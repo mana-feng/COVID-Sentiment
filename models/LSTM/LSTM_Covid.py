@@ -112,16 +112,16 @@ class SentimentRNN(nn.Module):
         self.n_layers = n_layers
         self.hidden_dim = hidden_dim
         
-        # embedding and LSTM layers
+        # embedding and bidirectional LSTM layers
         self.embedding = nn.Embedding(vocab_size, embedding_dim)
         self.lstm = nn.LSTM(embedding_dim, hidden_dim, n_layers,
-                            dropout=drop_prob, batch_first=True)
+                            dropout=drop_prob, batch_first=True, bidirectional=True)
         
         # dropout layer
         self.dropout = nn.Dropout(0.3)
         
-        # linear and sigmoid layer
-        self.fc = nn.Linear(hidden_dim, output_size)
+        # linear and sigmoid layer (hidden_dim * 2 for bidirectional)
+        self.fc = nn.Linear(hidden_dim * 2, output_size)
         self.softmax = nn.Softmax()
 
     def forward(self, x, hidden):
