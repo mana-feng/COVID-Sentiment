@@ -1,2 +1,19 @@
-Sentiment/
-Sentiment
+# Python
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# PyTorch weights
+*.pt
+
+# Word2Vec generated files
+*.model
+word2vec-features.npy
+word2vec-labels.npy
+rf_results.json
+models/Word2Vec/cleaned.csv
+
+# Internal learnings
+.learnings/
